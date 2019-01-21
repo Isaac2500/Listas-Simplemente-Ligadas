@@ -27,7 +27,8 @@ public class ListaEnlazada{
         Ls.eliminarUltimo();
         Ls.imprimirLista();*/
         System.out.println("Eliminacion del segundo");
-        Ls.eliminarIndice(6);
+        Ls.eliminarIndice(4);
+        Ls.Modificar(5, 10);
         Ls.imprimirLista();
         //Ls.addUltimo(9);
         //Ls.imprimirLista();
@@ -133,35 +134,32 @@ public class ListaEnlazada{
             if (index == 0) {
 
                 this.eliminarPrimero();
-
+                size--;
+                
             } else {
                 
-                if (index == size) {
+                if (index > size) {
                     
-                    this.eliminarUltimo();
+                    System.out.println("Nodo fuera de rango");
                 
                 } else {
                     
-                    if (index>size) {
-                    
-                        System.out.println("Nodo fuera de rango");
-                    
-                    } else {
-                    
-                        for(int i = 0; i<index-1 && temp.obtenerSiguiente()!=null;i++){
+                    for(int i = 0; i<index-1 && temp.obtenerSiguiente()!=null;i++){
 
-                            temp = temp.obtenerSiguiente();
-            
-                        }
-            
-                        if(temp.obtenerSiguiente().obtenerSiguiente() == null){
-                            temp.enlazarSiguiente(null);
-                            size--;
-                        }else{
-                            temp.enlazarSiguiente(temp.obtenerSiguiente().obtenerSiguiente());
-                            size--;
-                        }          
+                        temp = temp.obtenerSiguiente();
+        
                     }
+        
+                    if(temp.obtenerSiguiente().obtenerSiguiente() == null){
+                        temp.enlazarSiguiente(null);
+                        size--;
+                    }else{
+                        temp.enlazarSiguiente(temp.obtenerSiguiente().obtenerSiguiente());
+                        size--;
+                    }          
+                    
+                        
+                    
                 }        
             }
             
@@ -173,6 +171,26 @@ public class ListaEnlazada{
     
 
     //--------------------------------------------
+    //Metodo Modificar----------------------------
+    public void Modificar(int index, Object data){
+        
+        if(this.estaVacio() != true){
+            Nodo temp = cabeza;
+
+            for(int i=0; i<index && temp.obtenerSiguiente() != null;i++){
+                temp = temp.obtenerSiguiente();
+            }
+
+            temp.setValor(data);
+            
+
+        }else{
+            System.out.println("Lista Vacia");
+        }
+        
+        
+    }
+    
     public int size(){
         return size;
     }

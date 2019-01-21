@@ -30,6 +30,9 @@ public class Nodo {
         return this.siguiente;
     }
 
+    public void setValor(Object data){ 
+        this.data = data;
+    }
     
 
 }
